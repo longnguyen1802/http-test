@@ -90,6 +90,10 @@ app.get('/dashboard', (req, res) => {
   if (!user) {
     return res.status(401).send('Unauthorized. Please login.');
   }
+  res.cookie('testSomeCookie', 'cookieTest', {
+    maxAge: 1000 * 60 * 60, // Cookie expiration time in milliseconds (1 hour in this example)
+    httpOnly: true,         // The cookie is not accessible through JavaScript on the client side
+  });
   res.sendFile(__dirname + '/public/dashboard.html');
 });
 
